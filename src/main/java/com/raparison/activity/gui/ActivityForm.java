@@ -1,8 +1,12 @@
 package com.raparison.activity.gui;
 
+import com.raparison.activity.controller.ActivityController;
+import com.raparison.activity.model.Activity;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ActivityForm extends JFrame {
     private JTextField name;
@@ -16,7 +20,7 @@ public class ActivityForm extends JFrame {
     private JFormattedTextField formattedTextField1;
     private JLabel dateLabel;
 
-    public ActivityForm() {
+    public ActivityForm(ActivityController activityController) {
         setTitle("Ma Fenêtre");
         setContentPane(panel);
 
@@ -28,20 +32,31 @@ public class ActivityForm extends JFrame {
 
         // Action à effectuer lorsque la fenêtre est fermée
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Rendez la fenêtre visible
+        setVisible(true);
+
+        valider.addActionListener(e -> {
+            // Récupérer les données du formulaire
+            String nameValue = name.getText();
+            int durationValue = Integer.parseInt(duration.getText());
+            int rpeValue = RPE.getValue();
+            Date dateValue = (Date) formattedTextField1.getValue();
+
+            // Créer l'objet Activity
+            Activity activity = new Activity(nameValue, durationValue, dateValue, rpeValue);
+
+            activityController.saveActivity(activity);
+
+            // Affichez un message de succès
+            JOptionPane.showMessageDialog(ActivityForm.this, "Activity saved successfully!");
+        });
+
     }
 
     private void createUIComponents() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         formattedTextField1 = new JFormattedTextField(dateFormat);
     }
-
-    public static void main(String[] args) {
-        // Créer une instance de la fenêtre
-        ActivityForm fenetre = new ActivityForm();
-
-        // Rendre la fenêtre visible
-        fenetre.setVisible(true);
-    }
-
 
 }
