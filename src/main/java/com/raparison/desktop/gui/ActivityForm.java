@@ -1,7 +1,7 @@
-package com.raparison.activity.gui;
+package com.raparison.desktop.gui;
 
-import com.raparison.activity.controller.ActivityController;
-import com.raparison.activity.model.Activity;
+import com.raparison.desktop.controller.ActivityController;
+import com.raparison.desktop.model.Activity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,6 +36,9 @@ public class ActivityForm extends JFrame {
         // Rendez la fenêtre visible
         setVisible(true);
 
+        // Centrer la fenêtre sur l'écran
+        setLocationRelativeTo(null);
+
         valider.addActionListener(e -> {
             // Récupérer les données du formulaire
             String nameValue = name.getText();
@@ -44,7 +47,7 @@ public class ActivityForm extends JFrame {
             Date dateValue = (Date) formattedTextField1.getValue();
 
             // Créer l'objet Activity
-            Activity activity = new Activity(nameValue, durationValue, dateValue, rpeValue);
+            Activity activity = new Activity(nameValue, durationValue, dateValue, rpeValue, activityController);
 
             activityController.saveActivity(activity);
 

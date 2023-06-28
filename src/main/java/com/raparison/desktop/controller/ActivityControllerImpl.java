@@ -1,7 +1,9 @@
-package com.raparison.activity.controller;
+package com.raparison.desktop.controller;
 
-import com.raparison.activity.model.Activity;
-import com.raparison.activity.repository.ActivityRepository;
+import com.raparison.desktop.model.Activity;
+import com.raparison.desktop.repository.ActivityRepository;
+
+import java.util.List;
 
 public class ActivityControllerImpl implements ActivityController{
     ActivityRepository activityRepository;
@@ -12,5 +14,13 @@ public class ActivityControllerImpl implements ActivityController{
     @Override
     public String saveActivity(Activity activity) {
         return this.activityRepository.save(activity);
+    }
+
+    public List<Activity> getAllActivity() {
+        return activityRepository.getAll();
+    }
+
+    public int calculateCharge(int duration, int RPE) {
+        return duration * RPE;
     }
 }

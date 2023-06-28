@@ -1,6 +1,6 @@
-package com.raparison.activity.repository;
+package com.raparison.desktop.repository;
 
-import com.raparison.activity.model.Activity;
+import com.raparison.desktop.model.Activity;
 
 import java.util.List;
 

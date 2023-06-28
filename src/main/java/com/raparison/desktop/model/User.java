@@ -1,9 +1,9 @@
-package com.raparison.activity.model;
+package com.raparison.desktop.model;
 
 import java.util.Date;
 
 public class User {
-    public User(String name, String lastName, Date birthDate, boolean sexe) {
+    public User(String name, String lastName, Date birthDate, String sexe) {
         this.name = name;
         this.lastName = lastName;
         this. birthDate = birthDate;
@@ -13,7 +13,7 @@ public class User {
     private String name;
     private String lastName;
     private Date birthDate;
-    private boolean sexe;
+    private String sexe;
 
     public String getName() {
         return name;
@@ -39,11 +39,11 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public boolean isSexe() {
+    public String getSexe() {
         return sexe;
     }
 
-    public void setSexe(boolean sexe) {
+    public void setSexe(String sexe) {
         this.sexe = sexe;
     }
 }

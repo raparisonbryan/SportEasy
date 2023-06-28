@@ -1,19 +1,25 @@
-package com.raparison.activity.model;
+package com.raparison.desktop.model;
+
+import com.raparison.desktop.controller.ActivityController;
 
 import java.util.Date;
 
 public class Activity {
-    public Activity(String name, int duration, Date activityDate, int RPE) {
+    public Activity(String name, int duration, Date activityDate, int RPE, ActivityController activityController) {
         this.name = name;
         this.duration = duration;
         this.activityDate = activityDate;
         this.RPE = RPE;
+        this.activityController = activityController;
+        this.charge = calculateCharge();
     }
     private String name;
     private int duration;
     private Date activityDate;
     private int RPE;
     private float charge;
+    private ActivityController activityController;
+
 
     public String getName() {
         return name;
@@ -48,11 +54,14 @@ public class Activity {
     }
 
     public float getCharge() {
-        charge = duration * RPE;
         return charge;
     }
 
     public void setCharge(float charge) {
         this.charge = charge;
+    }
+
+    private int calculateCharge() {
+        return activityController.calculateCharge(duration, RPE);
     }
 }

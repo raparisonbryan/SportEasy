@@ -1,6 +1,7 @@
-package com.raparison.activity.mapper;
+package com.raparison.desktop.mapper;
 
-import com.raparison.activity.model.Activity;
+import com.raparison.desktop.controller.ActivityController;
+import com.raparison.desktop.model.Activity;
 import org.bson.Document;
 
 import java.util.Date;
@@ -22,7 +23,8 @@ public class ActivityMapper {
                 (String) document.get("name"),
                 (int) document.get("duration"),
                 (Date) document.get("activityDate"),
-                (int) document.get("RPE")
+                (int) document.get("RPE"),
+                (ActivityController) document.get("charge")
         );
         return activity;
     }

@@ -1,6 +1,7 @@
-import com.raparison.activity.controller.ActivityControllerImpl;
-import com.raparison.activity.model.Activity;
-import com.raparison.activity.repository.ActivityRepositoryImpl;
+import com.raparison.desktop.controller.ActivityController;
+import com.raparison.desktop.controller.ActivityControllerImpl;
+import com.raparison.desktop.model.Activity;
+import com.raparison.desktop.repository.ActivityRepositoryImpl;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -20,17 +21,30 @@ public class ActivityControllerImplTest {
 
     @Mock
     ActivityRepositoryImpl activityRepository;
+    ActivityController activityController = new ActivityController() {
+        @Override
+        public String saveActivity(Activity activity) {
+            return null;
+        }
+
+        @Override
+        public int calculateCharge(int duration, int RPE) {
+            return 0;
+        }
+    };
 
     Activity christineActivity = new Activity(
             "Christine",
             20,
             new Date(1982, 1, 1),
-            5);
+            5,
+            activityController);
     Activity brokenActivity = new Activity(
             "Christine",
             15,
             new Date(2082, 1, 1),
-            4);
+            4,
+            activityController);
 
     String id = "idChristine";
 

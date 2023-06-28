@@ -1,6 +1,6 @@
-package com.raparison.activity.mapper;
+package com.raparison.desktop.mapper;
 
-import com.raparison.activity.model.User;
+import com.raparison.desktop.model.User;
 import org.bson.Document;
 
 import java.util.Date;
@@ -11,7 +11,7 @@ public class UserMapper {
                 .append("name", user.getName())
                 .append("lastName", user.getLastName())
                 .append("birthDate", user.getBirthDate())
-                .append("sexe", user.isSexe())
+                .append("sexe", user.getSexe())
                 ;
         return document;
     }
@@ -21,7 +21,7 @@ public class UserMapper {
                 (String) document.get("name"),
                 (String) document.get("lastName"),
                 (Date) document.get("birthDate"),
-                (boolean) document.get("sexe")
+                (String) document.get("sexe")
         );
         return user;
     }

@@ -1,15 +1,15 @@
-package com.raparison.activity.repository;
+package com.raparison.desktop.repository;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.InsertOneResult;
-import com.raparison.activity.model.Activity;
+import com.raparison.desktop.model.Activity;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.raparison.activity.mapper.ActivityMapper.activityToDocument;
-import static com.raparison.activity.mapper.ActivityMapper.documentToActivity;
+import static com.raparison.desktop.mapper.ActivityMapper.activityToDocument;
+import static com.raparison.desktop.mapper.ActivityMapper.documentToActivity;
 
 public class ActivityRepositoryImpl implements ActivityRepository{
     MongoCollection<Document> collection;
