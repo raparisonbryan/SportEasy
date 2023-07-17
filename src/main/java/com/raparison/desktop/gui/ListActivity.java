@@ -3,6 +3,8 @@ package com.raparison.desktop.gui;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class ListActivity extends JFrame {
@@ -45,6 +47,22 @@ public class ListActivity extends JFrame {
 
         activityList.setCellRenderer(new CustomListCellRenderer());
 
+        // Créer le bouton retour
+        JButton returnButton = new JButton("Retour");
+
+        // Ajouter un ActionListener au bouton
+        returnButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                MainPage mainPage = new MainPage();
+                mainPage.setVisible(true);
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(returnButton);
+
+        add(buttonPanel, BorderLayout.NORTH);
     }
 
     private static class CustomListCellRenderer extends DefaultListCellRenderer {

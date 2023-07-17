@@ -1,10 +1,13 @@
 package com.raparison.desktop.gui;
 
 import com.raparison.desktop.controller.ActivityController;
+import com.raparison.desktop.controller.ActivityControllerImpl;
 import com.raparison.desktop.model.Activity;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -39,6 +42,15 @@ public class ActivityForm extends JFrame {
         // Centrer la fenêtre sur l'écran
         setLocationRelativeTo(null);
 
+        annuler.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainPage mainPage = new MainPage();
+                mainPage.setVisible(true);
+                ActivityForm.this.dispose(); // ferme la fenêtre actuelle
+            }
+        });
+
         valider.addActionListener(e -> {
             // Récupérer les données du formulaire
             String nameValue = name.getText();
@@ -47,12 +59,16 @@ public class ActivityForm extends JFrame {
             Date dateValue = (Date) formattedTextField1.getValue();
 
             // Créer l'objet Activity
-            Activity activity = new Activity(nameValue, durationValue, dateValue, rpeValue, activityController);
+            Activity activity = new Activity(nameValue, durationValue, dateValue, rpeValue);
 
             activityController.saveActivity(activity);
 
             // Affichez un message de succès
             JOptionPane.showMessageDialog(ActivityForm.this, "Activity saved successfully!");
+
+            dispose();
+            MainPage mainPage = new MainPage();
+            mainPage.setVisible(true);
         });
 
     }

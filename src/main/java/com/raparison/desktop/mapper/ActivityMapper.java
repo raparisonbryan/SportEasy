@@ -24,7 +24,7 @@ public class ActivityMapper {
                 (int) document.get("duration"),
                 (Date) document.get("activityDate"),
                 (int) document.get("RPE"),
-                (ActivityController) document.get("charge")
+                (double) document.get("charge")
         );
         return activity;
     }

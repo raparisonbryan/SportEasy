@@ -1,6 +1,7 @@
 import com.raparison.desktop.controller.ActivityController;
 import com.raparison.desktop.controller.ActivityControllerImpl;
 import com.raparison.desktop.model.Activity;
+import com.raparison.desktop.model.TrainingState;
 import com.raparison.desktop.repository.ActivityRepositoryImpl;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,8 +29,38 @@ public class ActivityControllerImplTest {
         }
 
         @Override
-        public int calculateCharge(int duration, int RPE) {
+        public double calculateTotalCharge() {
             return 0;
+        }
+
+        @Override
+        public double calculateChargeMoyenne() {
+            return 0;
+        }
+
+        @Override
+        public double calculateEcartType() {
+            return 0;
+        }
+
+        @Override
+        public double calculateMonotonie() {
+            return 0;
+        }
+
+        @Override
+        public double calculateContrainte() {
+            return 0;
+        }
+
+        @Override
+        public double calculateFitness() {
+            return 0;
+        }
+
+        @Override
+        public TrainingState assessTrainingState() {
+            return null;
         }
     };
 
@@ -37,14 +68,12 @@ public class ActivityControllerImplTest {
             "Christine",
             20,
             new Date(1982, 1, 1),
-            5,
-            activityController);
+            5);
     Activity brokenActivity = new Activity(
             "Christine",
             15,
             new Date(2082, 1, 1),
-            4,
-            activityController);
+            4);
 
     String id = "idChristine";
 

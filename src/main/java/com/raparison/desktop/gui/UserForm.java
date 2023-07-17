@@ -1,15 +1,12 @@
 package com.raparison.desktop.gui;
 
-import com.raparison.desktop.controller.ActivityController;
 import com.raparison.desktop.controller.UserController;
-import com.raparison.desktop.model.Activity;
-import com.raparison.desktop.model.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class UserForm extends JFrame{
     private JLabel nameLabel;
@@ -44,30 +41,26 @@ public class UserForm extends JFrame{
         // Centrer la fenêtre sur l'écran
         setLocationRelativeTo(null);
 
-        //Gestion du radioButton
-        boolean isMale = hommeRadioButton.isSelected();
-
-        valider.addActionListener(e -> {
-            // Récupérer les données du formulaire
-            String nameValue = name.getText();
-            String lastNameValue = lastName.getText();
-            Date dateValue = (Date) formattedTextField1.getValue();
-            String sexeLabel = (isMale) ? "Homme" : "Femme";
-
-            // Créer l'objet User
-            User user;
-            if (isMale) {
-                user = new User(nameValue, lastNameValue, dateValue, sexeLabel);
-            } else {
-                user = new User(nameValue, lastNameValue,dateValue, sexeLabel);
+        annuler.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainPage mainPage = new MainPage();
+                mainPage.setVisible(true);
+                UserForm.this.dispose(); // ferme la fenêtre actuelle
             }
-
-            userController.saveUser(user);
-
-            // Affichez un message de succès
-            JOptionPane.showMessageDialog(UserForm.this, "Activity saved successfully!");
         });
 
+        valider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nameValue = name.getText();
+                String lastNameValue = lastName.getText();
+
+                UserPage userPage = new UserPage(nameValue, lastNameValue);
+                userPage.setVisible(true);
+                UserForm.this.dispose(); // ferme la fenêtre actuelle
+            }
+        });
     }
 
     private void createUIComponents() {

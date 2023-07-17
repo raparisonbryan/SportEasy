@@ -2,24 +2,30 @@ package com.raparison.desktop.model;
 
 import com.raparison.desktop.controller.ActivityController;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Date;
 
 public class Activity {
-    public Activity(String name, int duration, Date activityDate, int RPE, ActivityController activityController) {
+    public Activity(String name, int duration, Date activityDate, int RPE, double charge) {
         this.name = name;
         this.duration = duration;
         this.activityDate = activityDate;
         this.RPE = RPE;
-        this.activityController = activityController;
-        this.charge = calculateCharge();
+        this.charge = charge;
+    }
+
+    public Activity(String name, int duration, Date activityDate, int RPE) {
+        this.name = name;
+        this.duration = duration;
+        this.activityDate = activityDate;
+        this.RPE = RPE;
     }
     private String name;
     private int duration;
     private Date activityDate;
     private int RPE;
-    private float charge;
-    private ActivityController activityController;
-
+    private double charge;
 
     public String getName() {
         return name;
@@ -53,15 +59,38 @@ public class Activity {
         this.RPE = RPE;
     }
 
-    public float getCharge() {
+    public double getCharge() {
         return charge;
     }
 
-    public void setCharge(float charge) {
+    public void setCharge(double charge) {
         this.charge = charge;
     }
 
-    private int calculateCharge() {
-        return activityController.calculateCharge(duration, RPE);
+    public static class DataDisplayForm extends JFrame {
+        private JLabel nameLabel;
+        private JLabel durationLabel;
+        private JLabel rpeLabel;
+
+        public DataDisplayForm(String name, int duration, int rpe) {
+            setTitle("Données de l'activité");
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            JPanel panel = new JPanel();
+            panel.setLayout(new GridLayout(3, 1));
+
+            nameLabel = new JLabel("Nom : " + name);
+            durationLabel = new JLabel("Durée : " + duration);
+            rpeLabel = new JLabel("RPE : " + rpe);
+
+            panel.add(nameLabel);
+            panel.add(durationLabel);
+            panel.add(rpeLabel);
+
+            add(panel);
+
+            pack();
+            setLocationRelativeTo(null);
+        }
     }
 }
