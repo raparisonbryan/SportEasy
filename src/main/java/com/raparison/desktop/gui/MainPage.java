@@ -67,22 +67,10 @@ public class MainPage extends JFrame {
         userForm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Création des boutons pour accéder aux autres fenêtres
-        openActivityButton = new JButton("Ouvrir la fenêtre d'activités");
+        openActivityButton = new JButton("Ajouter une activité");
         openListButton = new JButton("Ouvrir la fenêtre de liste des activités");
         modifierButton = new JButton("modifier vos informations");
         dataButton = new JButton("Voir les données de vos activités");
-
-        java.util.List<Activity> activities = activityController.getAllActivity();
-
-        // Créer une liste de chaînes pour afficher les noms des activités
-        List<String> activityNames = new ArrayList<>();
-        for (Activity activity : activities) {
-            activityNames.add(activity.getName());
-            activityNames.add(String.valueOf(activity.getDuration()));
-            activityNames.add(String.valueOf(activity.getActivityDate()));
-            activityNames.add(String.valueOf(activity.getRPE()));
-            activityNames.add(String.valueOf(activity.getCharge()));
-        }
 
         openActivityButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +80,19 @@ public class MainPage extends JFrame {
         });
         openListButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                java.util.List<Activity> activities = activityController.getAllActivity();
+
+                // Créer une liste de chaînes pour afficher les noms des activités
+                List<String> activityNames = new ArrayList<>();
+                for (Activity activity : activities) {
+                    activityNames.add(activity.getName());
+                    activityNames.add(String.valueOf(activity.getDuration()));
+                    activityNames.add(String.valueOf(activity.getActivityDate()));
+                    activityNames.add(String.valueOf(activity.getRPE()));
+                    activityNames.add(String.valueOf(activity.getCharge()));
+                }
+
                 ListActivity form = new ListActivity(activityNames);
                 form.setVisible(true);
             }

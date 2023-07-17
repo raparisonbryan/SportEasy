@@ -83,7 +83,7 @@ public class ActivityControllerImpl implements ActivityController{
         double contrainte = calculateContrainte();
         double fitness;
 
-        fitness = totalCharge * contrainte;
+        fitness = totalCharge - contrainte;
 
         return fitness;
     }

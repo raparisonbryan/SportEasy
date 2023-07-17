@@ -46,7 +46,7 @@ public class UserForm extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 MainPage mainPage = new MainPage();
                 mainPage.setVisible(true);
-                UserForm.this.dispose(); // ferme la fenêtre actuelle
+                UserForm.this.dispose();
             }
         });
 
@@ -56,9 +56,19 @@ public class UserForm extends JFrame{
                 String nameValue = name.getText();
                 String lastNameValue = lastName.getText();
 
-                UserPage userPage = new UserPage(nameValue, lastNameValue);
-                userPage.setVisible(true);
-                UserForm.this.dispose(); // ferme la fenêtre actuelle
+
+                if (nameValue == null || nameValue.isEmpty() || lastNameValue == null || lastNameValue.isEmpty()) {
+                    JOptionPane.showMessageDialog(
+                            UserForm.this,
+                            "Veuillez remplir les champs Nom et Prénom",
+                            "Erreur",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                } else {
+                    UserPage userPage = new UserPage(nameValue, lastNameValue);
+                    userPage.setVisible(true);
+                    UserForm.this.dispose();
+                }
             }
         });
     }

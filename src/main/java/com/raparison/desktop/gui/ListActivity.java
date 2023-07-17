@@ -40,13 +40,6 @@ public class ListActivity extends JFrame {
         // Centrer la fenêtre sur l'écran
         setLocationRelativeTo(null);
 
-        // Centrer le texte dans la liste
-        DefaultListCellRenderer renderer = new DefaultListCellRenderer();
-        renderer.setHorizontalAlignment(SwingConstants.CENTER);
-        activityList.setCellRenderer(renderer);
-
-        activityList.setCellRenderer(new CustomListCellRenderer());
-
         // Créer le bouton retour
         JButton returnButton = new JButton("Retour");
 
@@ -63,18 +56,5 @@ public class ListActivity extends JFrame {
         buttonPanel.add(returnButton);
 
         add(buttonPanel, BorderLayout.NORTH);
-    }
-
-    private static class CustomListCellRenderer extends DefaultListCellRenderer {
-        private static final Border DEFAULT_BORDER = BorderFactory.createEmptyBorder(5, 10, 5, 10);
-        private static final Border BOTTOM_BORDER = BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY);
-
-        @Override
-        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
-                                                      boolean cellHasFocus) {
-            JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            label.setBorder(BorderFactory.createCompoundBorder(DEFAULT_BORDER, BOTTOM_BORDER));
-            return label;
-        }
     }
 }
